@@ -291,8 +291,9 @@ document.getElementById('orderForm').addEventListener('submit', function(e) {
     "currency": "INR",
     "name": "Cafe Course by Abhijeet",
     "description": "12-Module Master Guide",
-    "handler": function (response){
-      document.getElementById('paymentLink').style.display = 'block';
+    "handler": function (response) {
+      // Immediately open the PDF in a new tab
+      window.open("/mnt/data/cafe%20course%20by%20abhijeet%20pdf.pdf", "_blank");
     },
     "prefill": {
       "name": document.getElementById('name').value,
@@ -308,6 +309,7 @@ document.getElementById('orderForm').addEventListener('submit', function(e) {
   rzp.open();
 });
 </script>
+
 
   <section class="faq">
   <h2>📋 Frequently Asked Questions (FAQs)</h2>
@@ -334,5 +336,6 @@ document.getElementById('orderForm').addEventListener('submit', function(e) {
   <button class="sticky-cta" onclick="document.getElementById('form').scrollIntoView({ behavior: 'smooth' })">Buy Now – ₹1</button>
 </body>
 </html>
+
 
 
