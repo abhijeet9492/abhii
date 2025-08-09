@@ -264,6 +264,43 @@
     <input type="text" placeholder="City & State" required>
     <button class="cta" type="submit">Proceed to Payment</button>
   </form>
+
+       <button id="payBtn" class="btn">Pay with Razorpay</button>
+
+    <div class="small">Payment secure via Razorpay. Payment complete होने पर आपको redirect कर दिया जायेगा।</div>
+  </div>
+
+  <!-- Razorpay Checkout script -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    (function(){
+      // --- USER / PRODUCT CONFIG (आप जरूरत अनुसार बदलें) ---
+      const RAZORPAY_KEY_ID = "rzp_live_aJnzj9PgUH44yP"; // आपने दिया हुआ Key ID
+      const AMOUNT_IN_RUPEES = 999; // ₹999
+      const AMOUNT_PAISE = AMOUNT_IN_RUPEES * 100; // Razorpay expects paise
+      const PRODUCT_NAME = "eBook — Start Your Café Journey";
+      const REDIRECT_AFTER_SUCCESS = "https://www.learnabhi.in"; // जैसे आपने कहा
+      const DOWNLOAD_LINK = "https://learnabhi.in/ebook.pdf"; // आपकी pdf link
+
+      // --- Checkout options ---
+      const options = {
+        key: RAZORPAY_KEY_ID,
+        amount: AMOUNT_PAISE.toString(),
+        currency: "INR",
+        name: PRODUCT_NAME,
+        description: "Complete eBook + Templates",
+        // image: "https://yourdomain.com/logo.png", // optional
+        // order_id: "", // ideally create order_id from server and pass here for security
+        prefill: {
+          name: "", // optional: if you have user name
+          email: "", // optional: if you have user email
+          contact: "" // optional: phone
+        },
+        notes: {
+          product: "ebook_cafe_12modules"
+        },
+        handler: function (response){
+          
     <!-- PDF Download Section -->
     <div id="paymentLink" style="display:none;margin-top:20px; text-align:center;">
       ✅ Payment Confirmed!<br><br>
@@ -278,25 +315,7 @@
     📥 Download Café eBook (PDF)
   </a>
 </div>
-  </section> 
-  
-  <!-- Razorpay Integration -->
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-  <script>
-    function handleSubmit(event) {
-      event.preventDefault();
-      
-      var options = {
-        key: "rzp_live_aJnzj9PgUH44y",
-        amount: 299 * 100, // in paise
-        currency: "INR",
-        name: "Start Your Café Journey",
-        description: "12 Modules • 90+ Lessons",
-        handler: function (response) {
-          // Payment success - show PDF
-          document.getElementById("paymentLink").style.display = "block";
-          window.scrollTo({ top: document.getElementById("paymentLink").offsetTop, behavior: "smooth" });
-        },
+        
   <section class="faq">
   <h2>📋 Frequently Asked Questions (FAQs)</h2>
   <div class="card-box">
@@ -322,5 +341,6 @@
   <button class="sticky-cta" onclick="document.getElementById('form').scrollIntoView({ behavior: 'smooth' })">Buy Now – ₹299</button>
 </body>
 </html>
+
 
 
