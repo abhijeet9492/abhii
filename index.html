@@ -264,58 +264,34 @@
     <input type="text" placeholder="City & State" required>
     <button class="cta" type="submit">Proceed to Payment</button>
   </form>
+  <p id="paymentLink" style="display:none;margin-top:20px">
+  ✅ Payment Confirmed! Click below to download your eBook:<br>
+  <a href="/mnt/data/cafe%20course%20by%20abhijeet%20pdf.pdf" class="cta" style="background-color: orange; margin-top: 10px; display: inline-block;">Download Café eBook (PDF)</a>
+</p>
+  
+</section>
 
-       <button id="payBtn" class="btn">Pay with Razorpay</button>
-
-    <div class="small">Payment secure via Razorpay. Payment complete होने पर आपको redirect कर दिया जायेगा।</div>
-  </div>
-
-  <!-- Razorpay Checkout script -->
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+function handleSubmit(event) {
+  event.preventDefault();
+  window.location.href = "https://razorpay.me/@abhijeetvishnuwankhede?amount=EPec5evqGoRk2C8icWNJlQ%3D%3D&redirect=true&callback_url=https%3A%2F%2Fwww.learnabhi.in%2Fthankyou.html";
+}  
   <script>
     (function(){
-      // --- USER / PRODUCT CONFIG (आप जरूरत अनुसार बदलें) ---
-      const RAZORPAY_KEY_ID = "rzp_live_aJnzj9PgUH44yP"; // आपने दिया हुआ Key ID
-      const AMOUNT_IN_RUPEES = 999; // ₹999
-      const AMOUNT_PAISE = AMOUNT_IN_RUPEES * 100; // Razorpay expects paise
+      const RAZORPAY_KEY_ID = "rzp_live_aJnzj9PgUH44yP";
+      const AMOUNT_IN_RUPEES = 299;
+      const AMOUNT_PAISE = AMOUNT_IN_RUPEES * 100;
       const PRODUCT_NAME = "eBook — Start Your Café Journey";
-      const REDIRECT_AFTER_SUCCESS = "https://www.learnabhi.in"; // जैसे आपने कहा
-      const DOWNLOAD_LINK = "https://learnabhi.in/ebook.pdf"; // आपकी pdf link
-
-      // --- Checkout options ---
+      const REDIRECT_AFTER_SUCCESS = "https://www.learnabhi.in"; 
+      const DOWNLOAD_LINK = "https://learnabhi.in/ebook.pdf";
       const options = {
         key: RAZORPAY_KEY_ID,
         amount: AMOUNT_PAISE.toString(),
         currency: "INR",
         name: PRODUCT_NAME,
         description: "Complete eBook + Templates",
-        // image: "https://yourdomain.com/logo.png", // optional
-        // order_id: "", // ideally create order_id from server and pass here for security
-        prefill: {
-          name: "", // optional: if you have user name
-          email: "", // optional: if you have user email
-          contact: "" // optional: phone
-        },
-        notes: {
-          product: "ebook_cafe_12modules"
-        },
-        handler: function (response){
-          
-    <!-- PDF Download Section -->
-    <div id="paymentLink" style="display:none;margin-top:20px; text-align:center;">
-      ✅ Payment Confirmed!<br><br>
-      <p>Download your Café eBook below:</p>
-      
-  <!-- Embedded PDF -->
-  <iframe src="START.pdf.pdf" width="100%" height="500px" style="border-radius:8px;"></iframe>
+</script>
 
-  <br><br>
-  <!-- Download Button -->
-  <a href="START.pdf.pdf" download class="cta" style="background-color: orange; padding:10px 20px; display:inline-block; border-radius:5px; text-decoration:none; color:white; font-weight:bold;">
-    📥 Download Café eBook (PDF)
-  </a>
-</div>
-        
   <section class="faq">
   <h2>📋 Frequently Asked Questions (FAQs)</h2>
   <div class="card-box">
@@ -327,7 +303,7 @@
     <p><strong>6. Will I receive a certificate after completing the course?</strong><br>→ Yes, you will receive a <strong>digital certificate</strong> upon successful completion.</p>
     <p><strong>7. What if I have questions or doubts during the course?</strong><br>→ You’ll get access to a <strong>WhatsApp support group</strong> where you can ask questions, plus regular Q&amp;A sessions.</p>
     <p><strong>8. How is this course different from free YouTube content?</strong><br>→ This course offers a <strong>complete A-to-Z roadmap</strong>, proven strategies, editable documents, and direct support — which you won’t get for free anywhere.</p>
-    <p><strong>9. What’s included in the ₹299 offer?</strong><br>→ Full access to all <strong>12 modules</strong>, bonus tools, templates, community access, and support. This is a <strong>limited-time price</strong> for the first 100 users (then ₹1299).</p>
+    <p><strong>9. What’s included in the ₹299 offer?</strong><br>→ Full access to all <strong>12 modules</strong>, bonus tools, templates, community access, and support. This is a <strong>limited-time price</strong> for the first 100 users (then ₹999).</p>
     <p><strong>10. Can I open a café after taking this course?</strong><br>→ Yes! You’ll have all the knowledge, tools, and guidance needed to confidently <strong>start and grow your café business</strong>.</p>
   </div>
 </section>
@@ -341,6 +317,5 @@
   <button class="sticky-cta" onclick="document.getElementById('form').scrollIntoView({ behavior: 'smooth' })">Buy Now – ₹299</button>
 </body>
 </html>
-
 
 
