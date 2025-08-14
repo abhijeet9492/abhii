@@ -288,7 +288,7 @@
     <!-- Post-payment message (download triggers automatically) -->
     <div id="pdfAccess" style="display: none; margin-top: 16px; padding: 16px; background: #ecfdf5; border: 1px solid #a7f3d0; color:#065f46; border-radius: 10px;">
       <div style="margin-bottom: 10px;">✅ Payment successful! Your PDF download should begin automatically.</div>
-      <a id="postPayDownload" class="btn btn-primary" href="ebook.pdf" download>Download your eBook</a>
+      <a id="postPayDownload" class="btn btn-primary" href="cafe%20course%20by%20abhijeet%20pdf.pdf" download>Download your eBook</a>
     </div>
   </div>
 
@@ -351,8 +351,8 @@
           if (pdfAccess) pdfAccess.style.display = 'block';
           // Resolve available PDF and auto-download
           const candidates = [
+            'cafe%20course%20by%20abhijeet%20pdf.pdf', // Newly uploaded file preferred
             'ebook.pdf',
-            'cafe%20course%20by%20abhijeet%20pdf.pdf',
             'cafe course by abhijeet pdf.pdf'
           ];
           resolvePdfUrl(candidates).then((pdfUrl) => {
