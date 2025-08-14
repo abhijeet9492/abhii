@@ -4,177 +4,519 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Start Your Café Journey</title>
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-  <link rel="stylesheet" href="styles.css">
-  <meta name="description" content="Start Your Café Journey - Complete 12-module course with 90+ lessons, templates, and proven roadmap. Limited time offer at ₹1!">
-  <meta name="keywords" content="cafe business, restaurant business, cafe startup, business guide, cafe course, food business">
-  <meta name="author" content="Cafe Business Guide">
-  <meta property="og:title" content="Start Your Café Journey - Complete Business Course">
-  <meta property="og:description" content="12 Modules • 90+ Lessons • Templates • Proven Roadmap - Limited time offer at ₹1!">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Google Font: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --cream: #FFFDF9;
+      --purple: #8B5CF6;
+      --orange: #FF6B00;
+      --text: #1F2937;
+      --muted: #6B7280;
+      --panel: #F3F4F6;
+      --white: #FFFFFF;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+    }
+
+    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Layout helpers */
+    .container {
+      width: min(1200px, 92%);
+      margin: 0 auto;
+    }
+    .section {
+      padding: clamp(48px, 6vw, 86px) 0;
+    }
+    .grid {
+      display: grid;
+      gap: 20px;
+    }
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .grid-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      background: radial-gradient(1200px 400px at 70% -10%, rgba(139,92,246,0.10), transparent 60%) no-repeat,
+                  radial-gradient(900px 380px at -10% 0%, rgba(255,107,0,0.12), transparent 55%) no-repeat,
+                  var(--cream);
+      padding-top: clamp(56px, 8vw, 96px);
+      padding-bottom: clamp(48px, 6vw, 80px);
+      overflow: hidden;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #F1EAFE;
+      color: #5B21B6;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 56px);
+      line-height: 1.1;
+      margin: 14px 0 10px;
+      letter-spacing: -0.5px;
+    }
+    .subhead {
+      font-size: clamp(14px, 2.6vw, 18px);
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-radius: 12px;
+      border: 0;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform .08s ease, box-shadow .2s ease, background .2s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary {
+      background: var(--orange);
+      color: var(--white);
+      box-shadow: 0 8px 22px rgba(255,107,0,0.25);
+    }
+    .btn-primary:hover { background: #e05d00; }
+    .note {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Image section */
+    .images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 26px;
+    }
+    .images img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    /* Cards */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    /* Features */
+    .features {
+      margin-top: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .feature {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 16px 16px 16px 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      box-shadow: var(--shadow);
+    }
+    .feature .tick {
+      font-size: 18px;
+      line-height: 1;
+      margin-top: 3px;
+      color: #059669;
+    }
+
+    /* Bonuses */
+    .bonuses {
+      background: var(--panel);
+    }
+    .bonus-grid {
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      margin-top: 18px;
+    }
+    .bonus {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 16px;
+      background: var(--white);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow);
+      font-weight: 500;
+    }
+
+    /* Pricing */
+    .price-box {
+      background: linear-gradient(180deg, #10B981 0%, #059669 100%);
+      color: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      text-align: center;
+      box-shadow: 0 14px 40px rgba(16,185,129,0.25);
+      width: min(520px, 100%);
+      margin: 0 auto 18px;
+    }
+    .price-main { font-size: clamp(28px, 5vw, 34px); margin: 0 0 6px; }
+    .price-sub { margin: 0 0 6px; opacity: 0.96; }
+    .price-strike {
+      margin: 0;
+      opacity: 0.85;
+      text-decoration: line-through;
+    }
+
+    /* Testimonials */
+    .testi-grid {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .testi {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .testi .who {
+      margin-top: 12px;
+      font-weight: 600;
+      color: #374151;
+      font-size: 14px;
+    }
+    .testi .stars { color: #F59E0B; font-size: 14px; }
+
+    /* Footer */
+    footer {
+      background: var(--purple);
+      color: var(--white);
+      padding: 28px 0;
+      text-align: center;
+      margin-top: 12px;
+    }
+    footer a { color: #fff; text-decoration: underline; }
+
+    /* Sticky buy now */
+    .sticky-buy {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 999;
+      border-radius: 999px;
+      padding: 14px 20px;
+      background: var(--orange);
+      color: var(--white);
+      box-shadow: 0 12px 28px rgba(255,107,0,0.35);
+      font-weight: 700;
+      cursor: pointer;
+      border: 0;
+    }
+    .sticky-buy:hover { background: #e05d00; }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 1000;
+    }
+    .modal.active { display: flex; }
+    .modal-card {
+      background: var(--white);
+      width: min(560px, 100%);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      position: relative;
+      padding: 22px;
+    }
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      border: 0;
+      background: var(--orange);
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .form-grid .full { grid-column: 1 / -1; }
+    input[type="text"], input[type="tel"], input[type="email"] {
+      width: 100%;
+      padding: 12px 12px;
+      border: 1px solid #E5E7EB;
+      border-radius: 10px;
+      outline: none;
+      font-size: 14px;
+      transition: border-color .15s ease, box-shadow .15s ease;
+      background: #fff;
+    }
+    input:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 3px rgba(139,92,246,0.15);
+    }
+    .modal-actions {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    /* Headings */
+    h2.section-title {
+      text-align: center;
+      margin: 0 0 10px;
+      font-size: clamp(22px, 3.6vw, 32px);
+      letter-spacing: -0.3px;
+    }
+    p.section-sub {
+      text-align: center;
+      color: var(--muted);
+      margin: 0 auto 18px;
+      width: min(720px, 92%);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .images { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .modal-card { padding: 18px; }
+    }
+  </style>
 </head>
 <body>
 
-  <header>
-    <h1>Start Your Café Journey</h1>
-    <p>12 Modules • 90+ Lessons • Templates • Proven Roadmap</p>
-    <button class="cta-button" onclick="document.getElementById('formPopup').style.display='block'">Buy Now for ₹1</button>
-    <p style="margin-top: 10px; font-size: 0.9rem;">Only 100 Copies at ₹1 — Then ₹999</p>
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container">
+      <span class="badge">New • Online Course</span>
+      <h1>Start Your Café Journey</h1>
+      <p class="subhead">12 Modules • 90+ Lessons • Templates • Proven Roadmap</p>
+      <div class="cta-row">
+        <button class="btn btn-primary buy-btn">Buy Now for ₹299</button>
+        <span class="note">Only 100 copies at ₹299 — Then ₹999</span>
+      </div>
+
+      <div class="images">
+        <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1400&auto=format&fit=crop" alt="Course Preview">
+        <img src="https://images.unsplash.com/photo-1521017432531-fbd92d1cf62d?q=80&w=1400&auto=format&fit=crop" alt="Café Illustration">
+      </div>
+    </div>
   </header>
 
-  <div class="image-section">
-    <img src="cd2ed25b-17f1-4b7c-84de-5f2972a01f9f.png" alt="Cafe Business Presentation">
-    <img src="Untitled design.png" alt="Cafe Illustration Graphic">
-  </div>
+  <!-- What You'll Learn -->
+  <section id="learn" class="section">
+    <div class="container">
+      <h2 class="section-title">What You'll Learn</h2>
+      <p class="section-sub">A practical, step-by-step roadmap to launch and grow a profitable café in India.</p>
 
-  <section class="section">
-    <h2>What You'll Learn</h2>
-    <div class="features">
-      <div class="feature-box">✅ Location, Licensing & Budget Planning</div>
-      <div class="feature-box">✅ Menu Design & Kitchen Setup</div>
-      <div class="feature-box">✅ Hiring, Staff Planning & ROI Models</div>
-      <div class="feature-box">✅ Swiggy/Zomato & Marketing</div>
-      <div class="feature-box">✅ Launch Checklist + Bonus Templates</div>
+      <div class="grid features">
+        <div class="feature"><span class="tick">✅</span> Location, Licensing & Budget Planning</div>
+        <div class="feature"><span class="tick">✅</span> Menu Design & Kitchen Setup</div>
+        <div class="feature"><span class="tick">✅</span> Hiring, Staff Planning & ROI Models</div>
+        <div class="feature"><span class="tick">✅</span> Swiggy/Zomato & Marketing</div>
+        <div class="feature"><span class="tick">✅</span> Launch Checklist + Bonus Templates</div>
+      </div>
     </div>
   </section>
 
-  <section class="section" style="background-color: #F3F4F6;">
-    <h2>Bonuses You'll Get</h2>
-    <div class="features">
-      <div class="feature-box">🎁 Editable Menu & Budget Sheets</div>
-      <div class="feature-box">🎁 Staff Hiring Format & Planner</div>
-      <div class="feature-box">🎁 Free Masterclass Video</div>
-      <div class="feature-box">🎁 WhatsApp Support Group Access</div>
+  <!-- Bonuses -->
+  <section id="bonuses" class="section bonuses">
+    <div class="container">
+      <h2 class="section-title">Bonuses You’ll Get</h2>
+      <p class="section-sub">Instant access to proven templates and resources to speed up your café launch.</p>
+
+      <div class="grid bonus-grid">
+        <div class="bonus">🎁 Editable Menu & Budget Sheets</div>
+        <div class="bonus">🎁 Staff Hiring Format & Planner</div>
+        <div class="bonus">🎁 Free Masterclass Video</div>
+        <div class="bonus">🎁 WhatsApp Support Group Access</div>
+      </div>
     </div>
   </section>
 
-  <section class="section">
-    <h2>What Our Students Say</h2>
-    <div class="testimonials">
-      <div class="testimonial-card">
-        <div class="testimonial-content">
-          <p>"This course gave me everything I needed to start my cafe. The templates alone saved me weeks of work!"</p>
-          <div class="testimonial-author">
-            <strong>Priya Sharma</strong>
-            <span>Owner, Brew & Bites Cafe</span>
-          </div>
+  <!-- Pricing -->
+  <section id="pricing" class="section">
+    <div class="container" style="display:flex;flex-direction:column;align-items:center;">
+      <h2 class="section-title">Pricing</h2>
+      <p class="section-sub">Launch offer for the first 100 action-takers.</p>
+
+      <div class="price-box">
+        <p class="price-main">Launch Price: ₹299</p>
+        <p class="price-sub">Only for first 100 buyers</p>
+        <p class="price-strike">Regular Price: ₹999</p>
+      </div>
+
+      <button class="btn btn-primary buy-btn">Buy Now for ₹299</button>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="section">
+    <div class="container">
+      <h2 class="section-title">What Students Say</h2>
+      <p class="section-sub">Real results from real café owners and aspiring entrepreneurs.</p>
+
+      <div class="grid testi-grid">
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          “Crystal clear roadmap. I launched my cloud kitchen in 5 weeks with these templates.”
+          <div class="who">— Rohan S., Pune</div>
+        </div>
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          “The licensing and budgeting sections alone saved me weeks and costly mistakes.”
+          <div class="who">— Aditi K., Bengaluru</div>
+        </div>
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          “Finally a practical course built for India. Worth much more than the price.”
+          <div class="who">— Imran H., Indore</div>
         </div>
       </div>
-      <div class="testimonial-card">
-        <div class="testimonial-content">
-          <p>"The ROI calculations and staff planning sections were game-changers. My cafe is now profitable in just 6 months!"</p>
-          <div class="testimonial-author">
-            <strong>Rajesh Kumar</strong>
-            <span>Founder, Urban Coffee Hub</span>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-content">
-          <p>"From licensing to marketing, this course covers everything. It's like having a cafe expert mentor you!"</p>
-          <div class="testimonial-author">
-            <strong>Anita Patel</strong>
-            <span>Co-owner, Sweet Dreams Bakery</span>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
-  <section class="section">
-    <h2>Pricing</h2>
-    <div class="price-box">
-      <p style="font-size: 1.5rem; margin: 0;">Launch Price: ₹1</p>
-      <p style="margin: 5px 0 10px;">Only for first 100 buyers</p>
-      <p style="margin: 0; font-size: 1rem; opacity: 0.8;">Regular Price: ₹999</p>
-    </div>
-    <button class="cta-button" onclick="document.getElementById('formPopup').style.display='block'">Buy Now for ₹1</button>
-    
-    <div class="guarantee-box">
-      <div class="guarantee-icon">🛡️</div>
-      <div class="guarantee-content">
-        <h3>30-Day Money-Back Guarantee</h3>
-        <p>If you're not completely satisfied with the course content, we'll refund your ₹1 within 30 days. No questions asked.</p>
-      </div>
-    </div>
-  </section>
-
+  <!-- Footer -->
   <footer>
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="#features">Course Features</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h3>Contact Info</h3>
-        <p>📧 support@cafebiz.in</p>
-        <p>📱 <a href="https://www.instagram.com/abhijeetwankhedeofficial?igsh=MXA5YXZpeXk2YWJ5dA%3D%3D&utm_source=qr" target="_blank">Follow us on Instagram</a></p>
-      </div>
-      <div class="footer-section">
-        <h3>About</h3>
-        <p>Created by a Real Café Owner for Real Indian Dreamers</p>
-        <p>12+ years of experience in the food & beverage industry</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2024 Cafe Business Guide. All rights reserved.</p>
+    <div class="container">
+      <p>📞 support@cafebiz.in | 📲 <a href="https://www.instagram.com/abhijeetwankhedeofficial" target="_blank" rel="noopener">Follow on Instagram</a></p>
+      <p>Created by a Real Café Owner for Real Indian Dreamers</p>
     </div>
   </footer>
 
-  <div class="sticky-btn" onclick="document.getElementById('formPopup').style.display='block'">Buy Now – ₹1</div>
+  <!-- Sticky Buy Now -->
+  <button class="sticky-buy buy-btn" aria-label="Buy Now">Buy Now • ₹299</button>
 
-  <div id="formPopup">
-    <button class="close-btn" onclick="document.getElementById('formPopup').style.display='none'">X</button>
-    <h3>Fill Your Details & Complete Payment</h3>
-    <form id="paymentForm" onsubmit="initiatePayment(event)">
-      <input type="text" id="customerName" placeholder="Full Name" required>
-      <input type="tel" id="customerPhone" placeholder="Phone Number" required>
-      <input type="email" id="customerEmail" placeholder="Email Address" required>
-      <input type="text" id="customerAddress" placeholder="Address" required>
-      <input type="text" id="customerProfession" placeholder="Profession" required>
-      <button type="submit">Pay ₹1 & Get Access</button>
-    </form>
-    <div id="paymentStatus" class="payment-status" style="display: none;"></div>
-    
-    <!-- PDF Access Section - Hidden until payment success -->
-    <div id="pdfAccess" style="display: none; margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
-      <h4 style="color: #28a745; margin-bottom: 15px;">🎉 Access Your Café Course PDF</h4>
-      
-      <div style="margin-bottom: 20px;">
-        <a href="cafe%20course%20by%20abhijeet%20pdf.pdf" target="_blank" rel="noopener" 
-           style="display:inline-block;padding:12px 20px;background:#8B5CF6;color:white;border-radius:8px;text-decoration:none;margin-right:10px;margin-bottom:10px;">
-          📄 Open PDF
-        </a>
-        <a href="cafe%20course%20by%20abhijeet%20pdf.pdf" download 
-           style="display:inline-block;padding:12px 20px;background:#00B894;color:white;border-radius:8px;text-decoration:none;margin-right:10px;margin-bottom:10px;">
-          💾 Download PDF
-        </a>
-        <a href="cafe%20course%20by%20abhijeet%20pdf.pdf" target="_blank" rel="noopener"
-           style="display:inline-block;padding:10px 16px;border-radius:8px;text-decoration:none;border:1px solid #ddd;color:#666;">
-          View in New Tab
-        </a>
-      </div>
-      
-      <div style="margin-top: 20px;">
-        <h5 style="margin-bottom: 10px;">📖 Preview Your Course:</h5>
-        <iframe src="cafe%20course%20by%20abhijeet%20pdf.pdf" width="100%" height="400" style="border:1px solid #ddd;border-radius:5px;"></iframe>
-      </div>
-      
-      <p style="margin-top: 15px; font-size: 14px; color: #666;">
-        <strong>Note:</strong> You can now access your complete café business course. 
-        The PDF contains all 12 modules, 90+ lessons, templates, and bonus materials.
-      </p>
+  <!-- Modal -->
+  <div id="buyModal" class="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Close">Close</button>
+      <h3 id="modalTitle" style="margin:0 0 6px;font-size:22px;">Complete Your Details</h3>
+      <p style="margin:0 0 12px;color:var(--muted);">Enter your information to proceed with the purchase.</p>
+
+      <form id="buyForm" novalidate>
+        <div class="form-grid">
+          <div class="full">
+            <input type="text" name="fullName" placeholder="Full Name" required>
+          </div>
+          <div>
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+          </div>
+          <div>
+            <input type="text" name="profession" placeholder="Profession" required>
+          </div>
+          <div class="full">
+            <input type="text" name="address" placeholder="Address" required>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn" id="modalCancel" style="background:#E5E7EB;color:#111827;">Cancel</button>
+          <button type="submit" class="btn btn-primary">Proceed</button>
+        </div>
+      </form>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    // Modal controls
+    const modal = document.getElementById('buyModal');
+    const openers = document.querySelectorAll('.buy-btn');
+    const closeBtn = document.getElementById('modalClose');
+    const cancelBtn = document.getElementById('modalCancel');
+    const form = document.getElementById('buyForm');
 
+    const openModal = () => {
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+    };
+    const closeModal = () => {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+    };
+
+    openers.forEach(btn => btn.addEventListener('click', openModal));
+    closeBtn.addEventListener('click', closeModal);
+    cancelBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // Simple client-side validation placeholder
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      const allFilled = Object.values(data).every(Boolean);
+
+      if (!allFilled) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      // No payment gateway here; integrate your backend or gateway as needed.
+      alert('Thanks! Your details have been captured.\nIntegrate payment processing next.');
+      form.reset();
+      closeModal();
+    });
+  </script>
 </body>
 </html>
