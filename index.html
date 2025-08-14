@@ -199,7 +199,7 @@
   </section>
 
   <footer>
-    <p>📞 support@cafebiz.in | 📲 <a href="https://www.instagram.com/abhijeetwankhedeofficial?igsh=MXA5YXZpeXk2YWJ5dA%3D%3D&utm_source=qr" target="_blank">Follow us on Instagram</a></p>
+    <p>�� support@cafebiz.in | 📲 <a href="https://www.instagram.com/abhijeetwankhedeofficial?igsh=MXA5YXZpeXk2YWJ5dA%3D%3D&utm_source=qr" target="_blank">Follow us on Instagram</a></p>
     <p>Created by a Real Café Owner for Real Indian Dreamers</p>
   </footer>
 
@@ -296,7 +296,7 @@
           // Payment successful
           statusDiv.className = 'payment-status payment-success';
           statusDiv.innerHTML = `
-            <h4>🎉 Payment Successful!</h4>
+            <h4>�� Payment Successful!</h4>
             <p>Payment ID: ${response.razorpay_payment_id}</p>
             <p>You now have access to your café course!</p>
           `;
@@ -307,13 +307,6 @@
           // Store customer data (you can send this to your backend)
           console.log('Payment successful:', response);
           console.log('Customer data:', formData);
-          
-          // Don't auto-close form - let user access PDF
-          // setTimeout(() => {
-          //   document.getElementById('formPopup').style.display = 'none';
-          //   document.getElementById('paymentForm').reset();
-          //   statusDiv.style.display = 'none';
-          // }, 5000);
         },
         modal: {
           ondismiss: function() {
