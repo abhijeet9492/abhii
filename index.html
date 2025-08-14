@@ -261,11 +261,54 @@
     <input type="text" placeholder="City & State" required>
     <button class="cta" type="submit">Proceed to Payment</button>
   </form>
-  <p id="paymentLink" style="display:none;margin-top:20px">
-    ✅ Please click below to complete your ₹299 payment:<br>
-    <a href="https://rzp.io/rzp/CxQ4CWF" class="cta" style="background-color: orange;" target="_blank">Pay ₹1 Now</a>
-  </p>
-  <p id="pdfLink" style="display:none;margin-top:20px">
+   </div>
+</div>
+
+<!-- Razorpay Script -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+  const modal = document.getElementById('buyModal');
+  const openBtns = [document.getElementById('buyNowBtn'), document.getElementById('stickyBuyBtn')];
+  const closeModalBtn = document.getElementById('closeModal');
+  const form = document.getElementById('buyForm');
+
+  openBtns.forEach(btn => btn.addEventListener('click', () => modal.style.display = 'block'));
+  closeModalBtn.addEventListener('click', () => modal.style.display = 'none');
+  window.addEventListener('click', (e) => { if (e.target == modal) modal.style.display = 'none'; });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    const allFilled = Object.values(data).every(Boolean);
+    if (!allFilled) {
+      alert('Please fill in all fields.');
+      return;
+    }
+
+    // Razorpay integration
+    const options = {
+      key: "rzp_live_aJnzj9PgUH44yP", // your key
+      amount: 29900, // in paise (₹299)
+      currency: "INR",
+      name: "Start Your Café Journey",
+      description: "Course Purchase",
+      handler: function (response) {
+        // Redirect to PDF after payment
+        window.location.href = "https://learnabhi.in/ebook.pdf";
+      },
+      prefill: {
+        name: data.fullName,
+        email: "", // Optional
+        contact: data.phone
+      },
+      theme: { color: "#FF6B00" }
+    };
+    const rzp = new Razorpay(options);
+    rzp.open();
+  });
+</script>
     ✅ Payment Confirmed! <a href="/mnt/data/cafe course by abhijeet pdf.pdf" download class="cta">Download Your PDF</a>
   </p>
 </section>
@@ -306,3 +349,4 @@ function handleSubmit(event) {
   <button class="sticky-cta" onclick="document.getElementById('form').scrollIntoView({ behavior: 'smooth' })">Buy Now – ₹299</button>
 </body>
 </html>
+
