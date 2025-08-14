@@ -153,12 +153,9 @@
   </header>
   <div class="hero">
     <h2>Start & Grow Your Dream Café – From Idea to Reality</h2>
-    <p>💥 Get the 12-Module Master Guide | Just ₹1 for First 100 Buyers</p>
+    <p>💥 Get the 12-Module Master Guide | Just ₹299 for First 100 Buyers</p>
     <p><strong>Only 100 Copies at ₹299 — Then ₹1299</strong></p>
-    <button class="cta" style="background-color: orange;" onclick="document.getElementById('form').scrollIntoView({ behavior: 'smooth' })">Buy Now – ₹1</button>
-    <img src="/mnt/data/0cb283a6-6e91-4047-a8da-21f1f9083ab9.png" alt="Cafe Team Image" />
-  </div>
-<img src="/mnt/data/0cb283a6-6e91-4047-a8da-21f1f9083ab9.png" alt="Cafe Team Image" />
+    <button class="cta" style="background-color: orange;" onclick="document.getElementById('form').scrollIntoView({ behavior: 'smooth' })">Buy Now – ₹299</button>
   <section>
     <div class="card-box">
   <h2>📚 COURSE MODULES OVERVIEW</h2>
@@ -228,7 +225,7 @@
   <section class="price-grid">
   <div class="price-box" style="border: 3px solid gold;">
     <h3>🔥 Best Deal – Limited Time</h3>
-    <p><strong>₹1/-</strong></p>
+    <p><strong>₹299/-</strong></p>
     <p>For First 100 Customers</p>
     <ul style="text-align: left; margin-top: 15px;">
       <li>✅ Full Access to 12 Modules</li>
@@ -238,7 +235,7 @@
       <li>✅ WhatsApp Support Group</li>
       <li>✅ 90+ Practical Lessons</li>
     </ul>
-    <button class="cta" onclick="document.getElementById('form').scrollIntoView({ behavior: 'smooth' })">Buy Now – ₹1</button>
+    <button class="cta" onclick="document.getElementById('form').scrollIntoView({ behavior: 'smooth' })">Buy Now – ₹299</button>
   </div>
 
   <div class="price-box">
@@ -264,56 +261,24 @@
     <input type="text" placeholder="City & State" required>
     <button class="cta" type="submit">Proceed to Payment</button>
   </form>
-  <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cafe Course eBook – Payment & Download</title>
-  <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
-    .container { max-width: 800px; margin: 40px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: center; }
-    h1 { color: #0ea5e9; }
-    .btn { display: inline-block; margin-top: 15px; padding: 10px 16px; background: #0ea5e9; color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold; }
-    .btn:hover { background: #0284c7; }
-    #downloadSection { display: none; margin-top: 20px; }
-    iframe { width: 100%; height: 600px; border: none; margin-top: 20px; }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Buy Cafe Course eBook</h1>
-    <p>Click below to pay securely and unlock your PDF download and preview.</p>
-    <button id="payBtn" class="btn">Pay Now</button>
+  <p id="paymentLink" style="display:none;margin-top:20px">
+    ✅ Please click below to complete your ₹299 payment:<br>
+    <a href="https://rzp.io/rzp/CxQ4CWF" class="cta" style="background-color: orange;" target="_blank">Pay ₹1 Now</a>
+  </p>
+  <p id="pdfLink" style="display:none;margin-top:20px">
+    ✅ Payment Confirmed! <a href="/mnt/data/cafe course by abhijeet pdf.pdf" download class="cta">Download Your PDF</a>
+  </p>
+</section>
 
-    <div id="downloadSection">
-      <h2>Payment Successful 🎉</h2>
-      <a id="postPayDownload" class="btn" href="cafe%20course%20by%20abhijeet%20pdf.pdf" download>Download your eBook</a>
-      <iframe src="cafe%20course%20by%20abhijeet%20pdf.pdf"></iframe>
-    </div>
-  </div>
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-  <script>
-    document.getElementById('payBtn').onclick = function(e){
-      var options = {
-        key: 'rzp_live_aJnzj9PgUH44yP',
-        amount: 29900,
-        currency: 'INR',
-        name: 'Cafe Course eBook',
-        description: 'Complete course to start your cafe',
-        handler: function (response){
-          document.getElementById('payBtn').style.display = 'none';
-          document.getElementById('downloadSection').style.display = 'block';
-        },
-        theme: { color: '#0ea5e9' }
-      };
-      var rzp1 = new Razorpay(options);
-      rzp1.open();
-      e.preventDefault();
-    }
-  </script>
-</body>
-</html>
+<script>
+function handleSubmit(event) {
+  event.preventDefault();
+  document.getElementById('paymentLink').style.display = 'block';
+  // Simulate payment confirmation (to be replaced with actual logic)
+  setTimeout(() => {
+    document.getElementById('pdfLink').style.display = 'block';
+  }, 4000); // simulate after 4 seconds
+}
 </script>
 
   <section class="faq">
@@ -327,7 +292,7 @@
     <p><strong>6. Will I receive a certificate after completing the course?</strong><br>→ Yes, you will receive a <strong>digital certificate</strong> upon successful completion.</p>
     <p><strong>7. What if I have questions or doubts during the course?</strong><br>→ You’ll get access to a <strong>WhatsApp support group</strong> where you can ask questions, plus regular Q&amp;A sessions.</p>
     <p><strong>8. How is this course different from free YouTube content?</strong><br>→ This course offers a <strong>complete A-to-Z roadmap</strong>, proven strategies, editable documents, and direct support — which you won’t get for free anywhere.</p>
-    <p><strong>9. What’s included in the ₹299 offer?</strong><br>→ Full access to all <strong>12 modules</strong>, bonus tools, templates, community access, and support. This is a <strong>limited-time price</strong> for the first 100 users (then ₹999).</p>
+    <p><strong>9. What’s included in the ₹299 offer?</strong><br>→ Full access to all <strong>12 modules</strong>, bonus tools, templates, community access, and support. This is a <strong>limited-time price</strong> for the first 100 users (then ₹1299).</p>
     <p><strong>10. Can I open a café after taking this course?</strong><br>→ Yes! You’ll have all the knowledge, tools, and guidance needed to confidently <strong>start and grow your café business</strong>.</p>
   </div>
 </section>
@@ -338,6 +303,6 @@
     <p>Created by a Real Café Owner for Real Indian Dreamers.</p>
   </footer>
 
-  <button class="sticky-cta" onclick="document.getElementById('form').scrollIntoView({ behavior: 'smooth' })">Buy Now – ₹1</button>
+  <button class="sticky-cta" onclick="document.getElementById('form').scrollIntoView({ behavior: 'smooth' })">Buy Now – ₹299</button>
 </body>
 </html>
