@@ -289,7 +289,7 @@
     <div id="downloadSection" style="display: none; margin-top: 16px; padding: 16px; background: #ecfdf5; border: 1px solid #a7f3d0; color:#065f46; border-radius: 10px;">
       <h4 style="margin:0 0 8px;">Payment Successful 🎉</h4>
       <a id="postPayDownload" class="btn btn-primary" href="cafe%20course%20by%20abhijeet%20pdf.pdf" download>Download your eBook</a>
-      <iframe src="cafe%20course%20by%20abhijeet%20pdf.pdf"ebook.pdf style="width:100%;height:400px;border:1px solid #E5E7EB;border-radius:10px;margin-top:10px;"></iframe>
+      <iframe src="cafe%20course%20by%20abhijeet%20pdf.pdf" style="width:100%;height:400px;border:1px solid #E5E7EB;border-radius:10px;margin-top:10px;"></iframe>
     </div>
 
 
@@ -298,20 +298,8 @@
     // Razorpay Live Key (provided)
     const RAZORPAY_KEY_ID = 'rzp_live_R58ZD9nwyW2UmJ';
 
-    // Try to resolve an existing PDF URL from a list of candidates
-    function resolvePdfUrl(candidates) {
-      const absolute = (p) => new URL(p, window.location.href).toString();
-      let chain = Promise.resolve(null);
-      candidates.forEach((name) => {
-        chain = chain.then((found) => {
-          if (found) return found;
-          return fetch(absolute(name), { method: 'HEAD' })
-            .then((res) => (res.ok ? absolute(name) : null))
-            .catch(() => null);
-        });
-      });
-      return chain.then((url) => url);
-    }
+    // PDF to deliver after payment (place this file next to index.html)
+    const POST_PAY_PDF_URL = 'cafe%20course%20by%20abhijeet%20pdf.pdf';
 
     // Attach to form submit
     function initiatePayment(event) {
@@ -350,31 +338,21 @@
           }
           const downloadSection = document.getElementById('downloadSection');
           if (downloadSection) downloadSection.style.display = 'block';
-          // Resolve available PDF and auto-download
-          const candidates = [
-            'cafe%20course%20by%20abhijeet%20pdf.pdf', // Newly uploaded file preferred
-            'ebook.pdf',
-            'cafe course by abhijeet pdf.pdf'
-          ];
-          resolvePdfUrl(candidates).then((pdfUrl) => {
-            const link = document.getElementById('postPayDownload');
-            if (link && pdfUrl) link.href = pdfUrl;
-            if (pdfUrl) {
-              try {
-                const a = document.createElement('a');
-                a.href = pdfUrl;
-                a.download = 'Cafe-Course.pdf';
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-              } catch (_) {
-                window.open(pdfUrl, '_blank');
-              }
-            } else if (statusDiv) {
-              statusDiv.className = 'payment-status payment-error';
-              statusDiv.innerHTML += '<p>PDF not found on the server. Please upload your file as \n<code>ebook.pdf</code> next to this page.</p>';
-            }
-          });
+          // Point the visible button and iframe to the PDF and auto-download
+          const link = document.getElementById('postPayDownload');
+          if (link) link.href = POST_PAY_PDF_URL;
+          const inlineFrame = document.querySelector('#downloadSection iframe');
+          if (inlineFrame) inlineFrame.src = POST_PAY_PDF_URL;
+          try {
+            const a = document.createElement('a');
+            a.href = POST_PAY_PDF_URL;
+            a.download = 'Cafe-Course.pdf';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+          } catch (_) {
+            window.open(POST_PAY_PDF_URL, '_blank');
+          }
         },
         modal: {
           ondismiss: function () {
