@@ -158,8 +158,8 @@
   <header>
     <h1>Start Your Café Journey</h1>
     <p>12 Modules • 90+ Lessons • Templates • Proven Roadmap</p>
-    <button class="cta-button" onclick="document.getElementById('formPopup').style.display='block'">Buy Now for ₹299</button>
-    <p style="margin-top: 10px; font-size: 0.9rem;">Only 100 Copies at ₹299 — Then ₹999</p>
+    <button class="cta-button" onclick="document.getElementById('formPopup').style.display='block'">Buy Now for ₹1</button>
+    <p style="margin-top: 10px; font-size: 0.9rem;">Only 100 Copies at ₹1 — Then ₹999</p>
   </header>
 
   <div class="image-section">
@@ -191,11 +191,11 @@
   <section class="section">
     <h2>Pricing</h2>
     <div class="price-box">
-      <p style="font-size: 1.5rem; margin: 0;">Launch Price: ₹299</p>
+      <p style="font-size: 1.5rem; margin: 0;">Launch Price: ₹1</p>
       <p style="margin: 5px 0 10px;">Only for first 100 buyers</p>
       <p style="margin: 0; font-size: 1rem; opacity: 0.8;">Regular Price: ₹999</p>
     </div>
-    <button class="cta-button" onclick="document.getElementById('formPopup').style.display='block'">Buy Now for ₹299</button>
+    <button class="cta-button" onclick="document.getElementById('formPopup').style.display='block'">Buy Now for ₹1</button>
   </section>
 
   <footer>
@@ -203,7 +203,7 @@
     <p>Created by a Real Café Owner for Real Indian Dreamers</p>
   </footer>
 
-  <div class="sticky-btn" onclick="document.getElementById('formPopup').style.display='block'">Buy Now – ₹299</div>
+  <div class="sticky-btn" onclick="document.getElementById('formPopup').style.display='block'">Buy Now – ₹1</div>
 
   <div id="formPopup">
     <button class="close-btn" onclick="document.getElementById('formPopup').style.display='none'">X</button>
@@ -214,7 +214,7 @@
       <input type="email" id="customerEmail" placeholder="Email Address" required>
       <input type="text" id="customerAddress" placeholder="Address" required>
       <input type="text" id="customerProfession" placeholder="Profession" required>
-      <button type="submit">Pay ₹299 & Get Access</button>
+      <button type="submit">Pay ₹1 & Get Access</button>
     </form>
     <div id="paymentStatus" class="payment-status" style="display: none;"></div>
     
@@ -274,7 +274,7 @@
       // Create Razorpay options
       const options = {
         key: RAZORPAY_KEY_ID,
-        amount: 29900, // Amount in paise (₹299)
+        amount: 100, // Amount in paise (₹1)
         currency: 'INR',
         name: 'Café Business Guide',
         description: 'Complete Café Business Course with Templates',
