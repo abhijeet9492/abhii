@@ -297,6 +297,21 @@
     // Razorpay Live Key (provided)
     const RAZORPAY_KEY_ID = 'rzp_live_R58ZD9nwyW2UmJ';
 
+    // Try to resolve an existing PDF URL from a list of candidates
+    function resolvePdfUrl(candidates) {
+      const absolute = (p) => new URL(p, window.location.href).toString();
+      let chain = Promise.resolve(null);
+      candidates.forEach((name) => {
+        chain = chain.then((found) => {
+          if (found) return found;
+          return fetch(absolute(name), { method: 'HEAD' })
+            .then((res) => (res.ok ? absolute(name) : null))
+            .catch(() => null);
+        });
+      });
+      return chain.then((url) => url);
+    }
+
     // Attach to form submit
     function initiatePayment(event) {
       event.preventDefault();
@@ -334,19 +349,31 @@
           }
           const pdfAccess = document.getElementById('pdfAccess');
           if (pdfAccess) pdfAccess.style.display = 'block';
-
-          // Auto-start download: Attempt direct download, fallback to opening in new tab
-          const pdfFile = 'ebook.pdf'; // ensure this file exists next to this HTML
-          try {
-            const a = document.createElement('a');
-            a.href = pdfFile;
-            a.download = 'Cafe-Course.pdf';
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-          } catch (_) {
-            window.open(pdfFile, '_blank');
-          }
+          // Resolve available PDF and auto-download
+          const candidates = [
+            'ebook.pdf',
+            'cafe%20course%20by%20abhijeet%20pdf.pdf',
+            'cafe course by abhijeet pdf.pdf'
+          ];
+          resolvePdfUrl(candidates).then((pdfUrl) => {
+            const link = document.getElementById('postPayDownload');
+            if (link && pdfUrl) link.href = pdfUrl;
+            if (pdfUrl) {
+              try {
+                const a = document.createElement('a');
+                a.href = pdfUrl;
+                a.download = 'Cafe-Course.pdf';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+              } catch (_) {
+                window.open(pdfUrl, '_blank');
+              }
+            } else if (statusDiv) {
+              statusDiv.className = 'payment-status payment-error';
+              statusDiv.innerHTML += '<p>PDF not found on the server. Please upload your file as \n<code>ebook.pdf</code> next to this page.</p>';
+            }
+          });
         },
         modal: {
           ondismiss: function () {
